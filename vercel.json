@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node",
+        "config": {
+          "maxLambdaExecutionTime": 10,
+          "includeFiles": "views/**"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*).html",
+        "headers": { "cache-control": "s-maxage=0" },
+        "dest": "/$1.html"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/server.js"
+      }
+    ]
+  }
+  

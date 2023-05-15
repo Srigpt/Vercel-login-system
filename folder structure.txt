@@ -1,0 +1,25 @@
+login-system/
+├─ .vercel/
+│
+├─ models/
+│   └─ timesheet.js
+│
+├─ node_modules/
+│
+├─ public/
+│   ├─ submit-new-timesheet.css
+│   ├─ submit-new-timesheet.js
+│   
+├─ views/
+│   ├─ login.ejs
+│   ├─ dashboard.ejs
+│   ├─ register.ejs
+│   ├─ index.ejs
+│   ├─ submitted-timesheets.ejs
+│   └─ submit-new-timesheet.ejs
+│    
+├─ .gitignore
+├─ package.json
+├─ package-lock.json
+├─ vercel.json
+└─ server.js

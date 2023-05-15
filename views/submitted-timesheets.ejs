@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submitted Timesheets</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Submitted Timesheets</h1>
+    <label for="week">Select a week:</label>
+    <select id="week-select" name="week"></select>
+    <button id="load-timesheets" class="btn btn-primary">Load Timesheets</button>
+    <hr>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Timesheet Data</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <a href="/dashboard">Back to Dashboard</a>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const weekSelect = document.querySelector('#week-select');
+    const loadTimesheetsButton = document.querySelector('#load-timesheets');
+    const timesheetsTableBody = document.querySelector('.table tbody');
+
+    function generateWeekOptions() {
+      const currentYear = new Date().getFullYear();
+      const totalWeeks = 52;
+
+      for (let year = currentYear - 2; year <= currentYear; year++) {
+        for (let week = 1; week <= totalWeeks; week++) {
+          const weekOption = document.createElement('option');
+          weekOption.value = `${year}-W${week < 10 ? '0' + week : week}`;
+          weekOption.textContent = `Week ${week}, ${year}`;
+          weekSelect.appendChild(weekOption);
+        }
+      }
+    }
+
+    generateWeekOptions();
+
+    loadTimesheetsButton.addEventListener('click', async () => {
+      const week = weekSelect.value;
+      try {
+        const response = await fetch(`/submitted-timesheets-data/${week}`);
+        const timesheets = await response.json();
+        renderTimesheets(timesheets);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    function renderTimesheets(timesheets) {
+      timesheetsTableBody.innerHTML = '';
+
+      if (timesheets.length > 0) {
+        timesheets.forEach(timesheet => {
+          const row = document.createElement('tr');
+          const weekCell = document.createElement('td');
+          weekCell.textContent = timesheet.week;
+          const timesheetDataCell = document.createElement('td');
+          const pre = document.createElement('pre');
+          pre.textContent = JSON.stringify(timesheet.timesheetData, null, 2);
+          timesheetDataCell.appendChild(pre);
+
+          row.appendChild(weekCell);
+          row.appendChild(timesheetDataCell);
+          timesheetsTableBody.appendChild(row);
+        });
+      } else {
+        const row = document.createElement('tr');
+        const noDataCell = document.createElement('td');
+        noDataCell.setAttribute('colspan', '2');
+        noDataCell.textContent = 'No submitted timesheets found.';
+        row.appendChild(noDataCell);
+        timesheetsTableBody.appendChild(row);
+      }
+    }
+  </script>
+</body>
+</html>

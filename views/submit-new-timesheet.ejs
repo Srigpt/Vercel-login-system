@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Timesheet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="submit-new-timesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5R6/0vzNNqLmv3AMkp2ttx2b8fDo3tFw1JGQUX0c" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Timesheet</h1>
+        <div class="selection">
+            <label for="week">Select Week: </label>
+            <input type="week" id="week" value="2023-W01">
+            <span id="month-name"></span>
+        </div>
+        <form id="timesheet-form" action="/dashboard/submit-new-timesheet" method="post">
+            <div id="timesheet-container">
+                <table id="timesheet">
+                    <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th data-day="monday">
+                                <div class="day-name">Monday</div>
+                                <div class="date">--</div>
+                            </th>
+                            <th data-day="tuesday">
+                                <div class="day-name">Tuesday</div>
+                                <div class="date">--</div>
+                            </th>
+                            <th data-day="wednesday">
+                                <div class="day-name">Wednesday</div>
+                                <div class="date">--</div>
+                            </th>
+                            <th data-day="thursday">
+                                <div class="day-name">Thursday</div>
+                                <div class="date">--</div>
+                            </th>
+                            <th data-day="friday">
+                                <div class="day-name">Friday</div>
+                                <div class="date">--</div>
+                            </th>
+                            <th data-day="saturday">
+                                <div class="day-name">Saturday</div>
+                                <div class="date">--</div>
+                            </th>
+                            <th data-day="sunday">
+                                <div class="day-name">Sunday</div>
+                                <div class="date">--</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total Hours</th>
+                            <td id="total-monday"></td>
+                            <td id="total-tuesday"></td>
+                            <td id="total-wednesday"></td>
+                            <td id="total-thursday"></td>
+                            <td id="total-friday"></td>
+                            <td id="total-saturday"></td>
+                            <td id="total-sunday"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br>
+                <button type="button" id="add-row" style="background-color: #f06543; color: #fff; margin-bottom: 1rem; border: none; padding: 8px 16px; cursor: pointer;">Add Row</button>
+                <br>
+                <div class="actions">
+                    <div class="button-container d-flex justify-content-end">
+                        <button type="submit" id="save-draft" class="btn btn-secondary" name="action" value="draft">Save as Draft</button>
+                        <button type="submit" id="submit" class="btn btn-primary ml-2" name="action" value="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailModalLabel">Add Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="detailForm">
+                            <div class="form-group">
+                                <label for="tag">Tag</label>
+                                <input list="client-options" class="form-control" id="tag" placeholder="Enter tag or select a client">
+                                <datalist id="client-options">
+                                    <option value="Client 1">Client 1</option>
+                                    <option value="Client 2">Client 2</option>
+                                    <option value="Client 3">Client 3</option>
+                                    <!-- Add more clients here as needed -->
+                                </datalist>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" rows="3" placeholder="Enter description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveDetails">Save Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/submit-new-timesheet.js"></script>
+    </div>
+</body>
+</html>

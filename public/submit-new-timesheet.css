@@ -1,0 +1,182 @@
+body {
+        font-family: 'Inter', sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        color: #333;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 2rem;
+    }
+    
+    h1 {
+        font-weight: 600;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .selection {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .selection label {
+        margin-right: 1rem;
+        font-weight: 500;
+    }
+    
+    #week {
+        margin-right: 1rem;
+    }
+    
+    #timesheet-container {
+        background-color: #f7f7f7;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    table {
+        width: 80%;
+        border-collapse: collapse;
+    }
+    
+    th,td {
+        border: 1px solid #ddd;
+        padding: 3px;
+        text-align: center;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+        font-weight: 500;
+    }
+    
+    #month-name {
+        font-weight: bold;
+        margin-left: -10px;
+    }
+    
+    button {
+        margin-top: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 12px;
+        cursor: pointer;
+    }
+    
+    button
+    #add-row {
+        background-color: #f06543 !important; /* Change the background color to a vibrant orange and add !important */
+        color: #fff !important;
+        margin-bottom: 1rem;
+        border: none !important; /* Add this line to remove the default button border and add !important */
+        padding: 8px 16px !important; /* Add this line to adjust the button padding and add !important */
+        cursor: pointer !important; /* Add this line to change the cursor to a pointer when hovering over the button and add !important */
+    }  
+        .actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: -100%;
+        }
+        
+        .button-container {
+        display: flex;
+        justify-content: flex-end;
+        }
+        
+        .button-container button {
+        margin-left: 1rem;
+        }
+        
+        #save-draft {
+        background-color: #9b9b9b;
+        color: #fff;
+        }
+        
+        #submit {
+        background-color: #0070c9;
+        color: #fff;
+        }
+        
+        .modal-dialog {
+        max-width: 400px;
+        }
+        
+        .modal-content {
+        padding: 5px;
+        }
+        
+        .modal-body {
+        margin: 5px;
+        }
+        
+        .modal-content {
+        resize: both;
+        overflow: auto;
+        }
+        
+        .resize-handle {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        position: absolute;
+        cursor: pointer;
+        }
+        
+        .resize-handle.nw {
+        top: -5px;
+        left: -5px;
+        cursor: nwse-resize;
+        }
+        
+        .resize-handle.ne {
+        top: -5px;
+        right: -5px;
+        cursor: nesw-resize;
+        }
+        
+        .resize-handle.sw {
+        bottom: -5px;
+        left: -5px;
+        cursor: nesw-resize;
+        }
+        
+        .resize-handle.se {
+        bottom: -5px;
+        right: -5px;
+        cursor: nwse-resize;
+        }
+        
+        .modal-header {
+        cursor: move;
+        }
+        
+        .modal-open .modal {
+        overflow-y: auto;
+        }
+        
+        .modal-open .modal .modal-dialog {
+        margin-top: -10px;
+        margin-bottom: -10px;
+        }
+        
+        .modal-open .modal .modal-content {
+       max-height: calc(100vh - 20px);
+        overflow: hidden;
+        }
+        
+        th .day-name {
+       display: block;
+        font-weight: 600;
+        }
+        
+        th .date {
+       display: block;
+        font-weight: 400;
+        }
+    
